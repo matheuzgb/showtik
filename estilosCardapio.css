@@ -1,0 +1,241 @@
+body
+{
+    background-color: rgb(212, 248, 212);
+    display: flex;
+    justify-content: flex-start;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin:0px;
+    overflow: hidden;
+    font-family: 'Roboto';
+    animation: fadein 3s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+
+}
+.menu
+{
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    color:white;
+}
+.texto
+{
+    font-size: 25px;
+}
+.textCalabresa
+{
+    position: absolute;
+    font-size: 19px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.imgCalabresa
+{
+    width:330px;
+    height:80px;
+    background-image: url(Calabresa.png);
+    top: 80px;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.escuroCalabresa
+{
+    filter: opacity(45%);
+    width:330px;
+    height:80px;
+    background-color: black;
+
+}
+.textQueijo
+{
+    position: absolute;
+    font-size: 19px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.imgQueijo
+{
+    width:330px;
+    height:80px;
+    background-image: url(Queijo.png);
+    top: 180px;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.escuroQueijo
+{
+    filter: opacity(45%);
+    width:330px;
+    height:80px;
+    background-color: black;
+
+}
+.textFrango
+{
+    position: absolute;
+    font-size: 19px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.imgFrango
+{
+    width:330px;
+    height:80px;
+    background-image: url(Frango.png);
+    top: 280px;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.escuroFrango
+{
+    filter: opacity(45%);
+    width:330px;
+    height:80px;
+    background-color: black;
+
+}
+.textPortuguesa
+{
+    position: absolute;
+    font-size: 19px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.imgPortuguesa
+{
+    width:330px;
+    height:80px;
+    background-image: url(Portuguesa.png);
+    top: 380px;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.escuroPortuguesa
+{
+    filter: opacity(45%);
+    width:330px;
+    height:80px;
+    background-color: black;
+
+}
+.textChocolate
+{
+    position: absolute;
+    font-size: 19px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.imgChocolate
+{
+    width:330px;
+    height:80px;
+    background-image: url(Chocolate.png);
+    top: 480px;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.escuroChocolate
+{
+    filter: opacity(45%);
+    width:330px;
+    height:80px;
+    background-color: black;
+
+}
+.textMarguerita
+{
+    position: absolute;
+    font-size: 19px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.imgMarguerita
+{
+    width:330px;
+    height:80px;
+    background-image: url(Marguerita.png);
+    top: 580px;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.escuroMarguerita
+{
+    filter: opacity(45%);
+    width:330px;
+    height:80px;
+    background-color: black;
+
+}
+
+.icones
+{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+a
+{
+    width:330px;
+    height:80px;   
+}
+.titulo{
+    margin-top:10px;
+    font-size: 23px;
+    border-bottom: 10px;
+    border-color: rgb(88, 180, 104);
+}
+
+.botao
+{
+    background-color: rgb(165, 243, 175);
+    width: 350px;
+    height: 40px;
+    display: flex;
+    margin-left: 0px;
+    margin-top: 50px;
+    align-items: absolute;
+    justify-content: center;
+    color:rgb(7, 7, 7);
+    box-shadow: 5px 5px 5px silver;
+    border-width: 1px;
+    border-color: rgb(148, 241, 161);
+    border-style: solid;
+}

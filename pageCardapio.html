@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Página de Cardápio </title>
+    <link rel="stylesheet" href="estilosCardapio.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="texto">
+            Produtos
+        </div>
+    </div>
+
+    <div class="botao">
+        <div class="titulo">
+            Sabonetes liquidos
+        </div>
+    </div>
+
+<div class="sabonetepreto">
+    <img src="sabonete preto.PNG">
+</div>
+</a> 
+
+<a href="#" onclick="abrirPagina('pagePagamento.html', 'Frango|31.90')">
+    <div class="imgFrango">
+        <div class="escuroFrango"></div>
+        <div class="textFrango">
+            Frango
+        </div>
+    </div> 
+</a> 
+
+<a href="#" onclick="abrirPagina('pagePagamento.html', 'Portuguesa|21.42')">
+    <div class="imgPortuguesa">
+        <div class="escuroPortuguesa"></div>
+        <div class="textPortuguesa">
+            Portuguesa
+        </div>
+    </div> 
+</a> 
+
+<a href="#" onclick="abrirPagina('pagePagamento.html', 'Chocolate|37.56')">
+    <div class="imgChocolate">
+        <div class="escuroChocolate"></div>
+        <div class="textChocolate">
+            Chocolate
+        </div>
+    </div>
+</a>  
+
+<a href="#" onclick="abrirPagina('pagePagamento.html','Marguerita|30.45')">
+        <div class="imgMarguerita">
+            <div class="escuroMarguerita"></div>
+            <div class="textMarguerita">
+                Marguerita
+            </div>
+        </div>
+</a> 
+
+
+    <script>
+var variaveis = new URLSearchParams(location.search);
+var usuario = variaveis.get('usuario');
+
+var tamanho = variaveis.get('tamanho');
+
+        function abrirPagina(arquivo,sabor)
+        {
+            window.open(arquivo+"?usuario="+usuario+"&tamanho="+tamanho+"&sabor="+sabor,"_self");
+        }
+    </script>
+</html>
