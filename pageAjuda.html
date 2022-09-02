@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilosAjuda.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    
+    <div class="menu">
+        <div class="texto">
+            <font size="5" face="Verdana"> Ajuda </font>
+        </div>
+    </div>
+
+    <div id="text"> O que você precisa? </div>
+    <div id="text2"> 
+       Showtic tem de Diversos produtos de beleza para fazer de seu corpo, 
+       uma coisa mais bonita e saudável!
+        <br> <br>
+        As Formas de Pagamento são Pix, Boleto Bancário
+        Cartão de Débito e Crédito.
+        <br> <br> 
+        Os Valores são de R$47,99 até R$55,99!
+        <br> <br>   
+        Showtic Agradece a todos!
+    </div>
+
+    <div class="botao">
+        <div class="logoPizzaria">
+            <img src="logo show tic.png" width="150px">
+        </div>
+    </div>
+
+    
+</body>
+
+<script>
+
+var variaveis = new URLSearchParams(location.search);
+var usuario = variaveis.get('usuario');
+
+function abrirPagina(arquivo)
+    {
+        window.open(arquivo+"?usuario="+usuario,"_self");
+    }
+
+</script>
+</html>
