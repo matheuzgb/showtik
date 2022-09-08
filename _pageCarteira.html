@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Página de Dados ou Carteira </title>
+    <link rel="stylesheet" href="estilosCarteira.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+   
+    
+    <div class="menu">
+        <div class="texto">
+            Carteira
+        </div>
+    </div>
+
+    <div id="text">
+        Seus Dados
+    </div>
+
+    <div class="botao">
+        <div class="local">
+            <br> <br> 
+            <span class="largura"> </span>  <img src="local.png" width="20" height="20"> <input type="text" id="senha" size="30">
+            <br> <br> 
+            <span class="largura"> </span>  <img src="celular.png" width="20" height="20"> <input type="text" id="senha" size="30">
+            <br> <br> 
+            <span class="largura"> <img src="Cartao.png" width="20" height="20"> </span>  <input type="text" id="senha" size="30">
+            <br> <br>
+            <img src="st.png" width="150" height="150">
+        </div>
+    </div>
+
+
+</body>
+
+    <script>
+
+        navigator.geolocation.getCurrentPosition(function(posicao) {
+            var url = "http://nominatim.openstreetmap.org/reverse?lat="+posicao.coords.latitude+"&lon="+posicao.coords.longitude+"&format=json&json_callback=preencherDados";
+        
+            var script = document.createElement('script');
+            script.src = url;
+            document.body.appendChild(script);
+        });
+      
+        function preencherDados(dados) {
+            var endereco = dados.address.amenity + ": " + dados.address.road + " - " + dados.address.house_number + ", " + dados.address.suburb + ", " + dados.address.city + "/" + dados.address.state; 
+            local.innerHTML = endereco
+        }
+
+    </script>
+
+</html>
