@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem AppSite Pizza Gui</title>
+    <link rel="stylesheet" href="estilosListagem.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="texto">
+            Listagem de Produtos
+        </div>
+    </div>    
+
+    <div class="textBotao">
+    CÓDIGO:   <input type="text" id="codigo">  
+    <br> <br>
+    PRODUTO:   <input type="text" id="produto">  
+    <br> <br>
+    PREÇO:   <input type="text" id="preco" size="3"> 
+    <br> <br>
+    </div>
+    
+<div class="botao">
+    <button onclick="Inserir();">
+        INSERIR
+    </button>
+    
+    <button onclick="Excluir();">
+        EXCLUIR
+    </button>
+    
+    <button onclick="Alterar();">
+        ALTERAR
+    </button>
+    
+    <button onclick="Listar();">
+        LISTAR
+    </button>
+</div>
+    
+<div id="listagem" class="listagem"></div>
+
+</body>
+
+<script>
+    // Criando a base de dados SENAI:
+    var db = openDatabase('APP2','v1.0','Base de pedidos',2*1024*1024);
+    
+    // Criando a tabela se não existir
+    db.transaction(function(tx)
+    {
+        // Vá em INSPECIONAR >> Application -> WEB SQL
+        tx.executeSql('CREATE TABLE IF NOT EXISTS pedidos(cod INTEGER PRIMARY KEY AUTOINCREMENT,produto VARCHAR(20), preco DECIMAL, tamanho VARCHAR(1))')
+    })
+    
+    function Inserir()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('INSERT INTO pedidos(produto,preco) VALUES(?,?)',[produto.value,preco.value])
+        })
+    }
+    
+    function Excluir(c)
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('DELETE FROM pedidos WHERE cod=?',[]);
+        })
+    }
+    
+    function Alterar()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('UPDATE pedidos SET produto=?,preco=? WHERE cod=?',[produto.value,preco.value,codigo.value]);
+        })
+            
+    }
+    
+    function Listar()
+    {
+        db.transaction(function(tx)
+        {
+            var consulta = 'SELECT * FROM pedidos WHERE cod=?';
+            tx.executeSql(consulta,[codigo.value], function(tx,resultados)
+            {   
+                // Pegando o número de linhas retornado:
+                var linhas = resultados.rows.length;
+                if (linhas==0)
+                {
+                    alert("NÃO ENCONTRADO");
+                }
+                // Percorrendo cada linha:
+                var t = ""
+                var c = ""
+                var pro = ""
+                var pre = ""
+                for(i=0; i<linhas; i++)
+                {
+                        // Vamos pegar o nome:
+                    c = resultados.rows.item(i).cod
+                    pro = resultados.rows.item(i).produto
+                    pre = resultados.rows.item(i).preco;
+                    t = t + "<div class='linha'>"
+                    t = t + "<div class=codigo>" + c + "</div>"
+                    t = t + "<div class='produto'>" + pro + "</div>"
+                    t = t + "<div class='preco'>" + pre + "</div>"
+                    t = t + "<onclick=\"Excluir("+c+");\"/div>" 
+                }
+                listagem.innerHTML = t
+            });
+        })
+    }
+    
+</script>
+
+</html>

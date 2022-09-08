@@ -1,0 +1,143 @@
+body
+{
+    background-color: white;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin:0px;
+    overflow: hidden;
+    font-family: Roboto;
+    animation: fadein 3s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+
+}
+.menu
+{
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    color:white;
+}
+#text
+{
+    display: flex;
+    width: 100%;
+    margin-top: -00px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+}
+#text2
+{
+    padding: 7px;
+    margin-top: 65px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    color: #808080;
+}
+.linha
+{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+a
+{
+    text-decoration: none;
+}
+.rodape
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 60px;
+    margin-top: auto;
+    align-items: center;
+    align-content: center;    
+}
+.icones
+{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.logoPizzaria
+{
+    margin-top: -0px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.botao
+{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    margin-top: -340px;
+    align-items: center;
+    justify-content: center;
+    color:black;
+    box-shadow: 5px 5px 5px silver;
+    border-width: 1px;
+    border-color: silver;
+    border-style: solid;
+}
+.botaotext{
+    width: 300px;
+    height: 90px;
+    display: flex;
+    margin-top: 370px;
+    align-items: center;
+    justify-content: center;
+    color:black;
+    box-shadow: 5px 5px 5px silver;
+    border-width: 1px;
+    border-color: silver;
+    border-style: solid;   
+}
+
+.pergunte{
+    display: flex  ;
+    width: 100%;
+    margin-top: -80px;
+    flex-direction: row;
+    align-items: initial;
+    justify-content:initial;
+    text-align:justify;
+    font-size: 25px;
+    color: rgb(112, 108, 108);
+}
+.botaopergunte{
+    width:  1600px;
+    height: 800px;
+    display: flex;
+    margin-top: 370px;
+    align-items: center;
+    justify-content: center;
+    color:rgb(190, 185, 185);
+    box-shadow: 5px 5px 5px rgb(126, 124, 124);
+    border-width: 1px;
+    border-color: rgb(143, 138, 138);
+    border-style: solid;   
+    background-color:rgb(179, 173, 173)
+}

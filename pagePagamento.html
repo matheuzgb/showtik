@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Página de Pagamento </title>
+    <link rel="stylesheet" href="estilosPagamento.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div class="menu">
+        <div class="texto">
+            Forma de Pagamento
+        </div>
+    </div>
+
+    <div class="textPagamento">
+        Olá! <br> Escolha como Pagar!
+        <div class="imgSeta">
+            <img src="Seta.png" width="35px">
+        </div>
+    </div>
+
+    <a href="#" onclick="abrirPagina('pagePedido.html','Pix')">
+    <div class="botao">
+        <div class="botaoInterna">
+            <img src="Pix.png" width="30px" style="vertical-align:middle;">
+            &nbsp; Pix
+            <br>
+            <span class="text"> Pague na hora usando nosso CNPJ </span>
+        </div>
+    </div>
+    </a>    
+
+    <a href="#" onclick="abrirPagina('pagePedido.html','Dinheiro')">
+    <div class="botao">
+        <div class="botaoInterna">
+            <img src="Dinhero.png" width="30px"  style="vertical-align:middle;">
+            &nbsp; Dinheiro
+            <br>
+            <span class="text"> Pague na hora com nosso Entregador </span>
+        </div>
+    </div>
+    </a>
+
+    <a href="#" onclick="abrirPagina('pagePedido.html','Cartao')">
+    <div class="botao">
+        <div class="botaoInterna">
+            <img src="Cartao.png" width="30px"  style="vertical-align:middle;">
+                &nbsp; Cartão
+                <br>
+                <span class="text"> Pague na hora usando nosso Entregador com o seu Cartão </span>
+        </div>
+    </div>
+    </a>
+
+
+
+    <div class="rodape">
+            <div class="linha">
+                        <img src="Linha.png" width="100%">
+            </div>
+            <div class="icones">
+            <a href="#" onclick="abrirPagina('pageTamanho.html','')">
+                <img src="Menu.png" width="30px">
+            </a>
+            <a href="#" onclick="abrirPagina('pageTamanho.html','')">
+                <img src="Procurar.png" width="30px">
+            </a>
+            <a href="#" onclick="abrirPagina('pageCardapio.html','')">
+                <img src="Compra.png" width="30px">
+            </a>
+            <a href="#" onclick="abrirPagina('pageProfile.html','')">
+                <img src="Profile.png" width="30px">
+            </a>
+            </div>
+        </div>
+
+</body>
+    <script>
+var variaveis = new URLSearchParams(location.search);
+var usuario = variaveis.get('usuario');
+
+var tamanho = variaveis.get('tamanho');
+var sabor = variaveis.get('sabor');
+var pagamento = variaveis.get('pagamento');
+
+        function abrirPagina(arquivo,pagamento)
+        {
+            window.open(arquivo+"?usuario="+usuario+"&tamanho="+tamanho+"&sabor="+sabor+"&pagamento="+pagamento,"_self");
+        }
+    </script>
+
+</html>

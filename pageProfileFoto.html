@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Página de Pagamento </title>
+    <link rel="stylesheet" href="estilosProfileFoto.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="texto">
+            <font size="4" face="Verdana"> Foto de Perfil </font>
+        </div>
+    </div>
+
+    <img id="ponteiro" src="PonteiroMouse.png" width="30px">
+    <input type="file" id="meu_upload"></input><br>
+    <img id="imagem" src="Face.png" width="100px" height="100px" onclick="trocaImagem();">
+
+    <div class="Botoes">
+        <div onclick="Inserir();">
+            INSERIR
+        </div>
+        
+        <div onclick="Excluir();">
+            EXCLUIR
+        </div>
+        
+        <div onclick="Alterar();">
+            ALTERAR
+        </div>
+        
+        <div onclick="Pesquisar();">
+            PESQUISAR
+        </div>
+    </div>
+
+    <a href="#" onclick="abrirPagina('pageProfile.html')">
+    <div class="botaoVoltar">Voltar</div>
+    </a>
+</body>
+    
+<script src="jquery-3.6.0.min.js"></script>
+    
+<script>
+
+
+var variaveis = new URLSearchParams(location.search);
+var usuario = variaveis.get('usuario');
+
+function abrirPagina(arquivo)
+    {
+        window.open(arquivo+"?usuario="+usuario,"_self");
+    }
+
+    var db = openDatabase('APP2','v1','Base de Usuários',2*1024*1024);
+
+    db.transaction(function(tx)
+    {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios(login VARCHAR(10) PRIMARY KEY,senha VARCHAR(10), imagem TEXT)')
+    })
+
+    var caminho = ""; //Variável Global, pode ser usada em todas as funções
+
+    function trocaImagem()
+    {
+        meu_upload.click();
+    }
+
+    function Inserir()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('INSERT INTO usuarios(login,senha, imagem) VALUES(?,?,?)',[login.value,senha.value,caminho])
+        })
+    }
+
+    function Excluir()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('DELETE FROM usuarios WHERE login=?',[login.value]);
+        })
+    }
+
+    function Alterar()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('UPDATE usuarios SET senha=?, imagem=? WHERE login=?',[senha.value,caminho,login.value]);
+        })
+    }
+
+    function Pesquisar()
+    {
+        db.transaction(function(tx)
+        {
+            var consulta = 'SELECT * FROM usuarios WHERE login=?';
+            tx.executeSql(consulta,[login.value], function(tx,resultados)
+            {   
+                // Pegando o número de linhas retornado:
+                var linhas = resultados.rows.length;
+                if (linhas==0)
+                {
+                    alert("NÃO ENCONTRADO");
+                }
+                // Percorrendo cada linha:
+                for(i=0; i<linhas; i++)
+                {
+                    // Vamos pegar o nome:
+                    login.value = resultados.rows.item(i).login;
+                
+                    // Vamos pegar o peso:
+                    imagem.src = resultados.rows.item(i).imagem;
+                }
+            });
+        })
+    }
+
+
+
+
+
+    db.transaction(function(tx)
+        {
+            var consulta = 'SELECT * FROM usuarios WHERE login=?';
+            tx.executeSql(consulta,[usuario], function(tx,resultados)
+            {   
+                // Pegando o número de linhas retornado:
+                var linhas = resultados.rows.length;
+              
+                // Percorrendo cada linha:
+                for(i=0; i<linhas; i++)
+                {
+                
+                    // Vamos pegar o peso:
+                    imagem.src = resultados.rows.item(i).imagem;
+                }
+            });
+        })
+
+
+
+
+    $(document).on("change", "#meu_upload", function(e) {
+        showThumbnail(this.files);
+    });
+
+    function showThumbnail(files) {
+        if (files && files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+               imagem.src =  e.target.result;
+               caminho = e.target.result;
+
+
+               db.transaction(function(tx)
+                {
+                    tx.executeSql('UPDATE usuarios SET imagem=? WHERE login=?',[caminho,usuario]);
+                })
+
+            }
+
+            reader.readAsDataURL(files[0]);
+        }
+    }
+</script>
+    
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Histórico de Pedido</title>
+    <link rel="stylesheet" href="estilosHistPed.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body onload="Pesquisar();">
+
+    <div class="menu">
+        <div class="texto">
+            Histórico de Pedido
+        </div>
+    </div>    
+
+    <div id="textPed"> Seus Pedidos </div>
+
+    <div id="listagem" class="listagem"></div>
+
+    <a href="#" onclick="abrirPagina('pageProfile.html')">
+    <div class="buttonVoltar"> Voltar </div>
+    </a>
+
+        <div class="rodape">
+            <div class="linha">
+                        <img src="Linha.png" width="100%">
+            </div>
+            <div class="icones">
+            <a href="#" onclick="abrirPagina('pageTamanho.html')">
+                <img src="Menu.png" width="30px">
+            </a>
+            <a href="#" onclick="abrirPagina('pageTamanho.html')">
+                <img src="Procurar.png" width="30px">
+            </a>
+            <a href="#" onclick="abrirPagina('pageCardapio.html')">
+                <img src="Compra.png" width="30px">
+            </a>
+            <a href="#" onclick="abrirPagina('pageProfile.html')">
+                <img src="Profile.png" width="30px">
+            </a>
+            </div>
+        </div>
+
+        
+</body>
+
+<script src="jquery-3.6.0.min.js"></script>
+
+<script>
+var variaveis = new URLSearchParams(location.search);
+var usuario = variaveis.get('usuario'); 
+
+    var tamanho = variaveis.get('tamanho'); // A variável log contém o login que veio da sua tela inicial.
+    var sabor = variaveis.get('sabor');
+    var pagamento = variaveis.get('pagamento');
+// Se você estiver na tela inicial então insira a linha abaixo dentro da função do botão ENTRAR:
+
+// log = login.value;
+
+    // Criando a base de dados SENAI:
+    var db = openDatabase('APP2','v1','Base de pedidos',2*1024*1024);
+
+    // Criando as tabelas se não existirem
+    db.transaction(function(tx)
+    {
+        // Vá em INSPECIONAR >> Application -> WEB SQL
+        tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios(login VARCHAR(20) PRIMARY KEY,senha VARCHAR(10), imagem TEXT)')
+    })
+
+    db.transaction(function(tx)
+    {
+        // Vá em INSPECIONAR >> Application -> WEB SQL
+        tx.executeSql('CREATE TABLE IF NOT EXISTS pedidos(cod INTEGER PRIMARY KEY AUTOINCREMENT,produto VARCHAR(20), preco DECIMAL, tamanho VARCHAR(1))')
+    })
+
+    function Excluir(c)
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('DELETE FROM pedidos WHERE cod=?',[c]);
+        })
+        location.reload()
+    }
+
+    function Alterar()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql('UPDATE pedidos SET produto=?,preco=? WHERE cod=?',[produto.value,preco.value,codigo.value]);
+        })
+        
+    }
+
+    function Pesquisar(codigo)
+    {
+       
+        
+        db.transaction(function(tx)
+        {
+            var consulta = 'SELECT * FROM pedidos';
+            if (codigo==0)
+            {
+                consulta = 'SELECT * FROM pedidos order by cod desc limit 1 '; 
+            }
+            tx.executeSql(consulta,[], function(tx,resultados)
+            {   
+                // Pegando o número de linhas retornado:
+                var linhas = resultados.rows.length;
+               
+                var t = ""
+                var c = ""
+                var pro = ""
+                var pre = ""
+
+
+                 // Percorrendo cada linha:
+                for(i=0; i<linhas; i++)
+                {
+                    // Vamos pegar as colunas e jogar cada uma dentro de uma DIV:
+                     c = resultados.rows.item(i).cod
+                     pro = resultados.rows.item(i).produto
+                     pre = parseFloat(resultados.rows.item(i).preco);
+                     pre = (Math.round(pre * 100) / 100).toFixed(2);
+                     
+                    t = t + "<div class='linha' onclick=\"Excluir("+c+");\">"
+                    t = t + "<div class='codigo_inicial'> x </div> <div class=codigo>" + c + "</div>"
+                    t = t + "<div class='produto'>" + pro + "</div>"
+                    t = t + "<div class='preco'>" + pre + "</div>"
+                    t = t + "</div>" 
+                }
+                listagem.innerHTML = t
+            });
+        })
+    }
+
+    function abrirPagina(arquivo)
+    {
+        window.open(arquivo+"?usuario="+usuario,"_self");
+    }
+</script>
+
+</html>
